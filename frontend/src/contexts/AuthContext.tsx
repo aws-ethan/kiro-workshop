@@ -58,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       // After registration, automatically log in
       await login(username, password);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Registration failed');
+      setError('An error occurred');
       throw err;
     } finally {
       setLoading(false);

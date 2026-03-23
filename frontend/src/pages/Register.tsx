@@ -23,16 +23,6 @@ const Register: React.FC = () => {
       return;
     }
     
-    if (password !== confirmPassword) {
-      setFormError('Passwords do not match');
-      return;
-    }
-    
-    if (password.length < 8) {
-      setFormError('Password must be at least 8 characters long');
-      return;
-    }
-    
     try {
       await register(username, email, password, displayName);
       navigate('/');
