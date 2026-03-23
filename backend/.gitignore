@@ -1,13 +1,6 @@
 # Dependencies
 node_modules/
 
-# Environment variables
-.env
-!.env.example
-
-# SQLite database files
-data/
-
 # Logs
 logs
 *.log
@@ -16,3 +9,6 @@ npm-debug.log*
 # Editor directories and files
 .DS_Store
 *.sw?
+
+# Environment variables
+.env
