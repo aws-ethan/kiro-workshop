@@ -49,3 +49,45 @@ describe('Feature: local-development-setup, Property 2: Database initialization 
     );
   });
 });
+
+
+// Set JWT_SECRET before importing server
+process.env.JWT_SECRET = 'test-secret';
+
+const request = require('supertest');
+const app = require('../../src/server');
+
+/**
+ * Feature: local-development-setup
+ * Property 1: CORS header presence
+ *
+ * For any HTTP method and valid route, the response should include
+ * Access-Control-Allow-Origin header.
+ *
+ * Validates: Requirements 1.3
+ */
+describe('Feature: local-development-setup, Property 1: CORS header presence', () => {
+  const validRoutes = ['/auth/register', '/auth/login', '/posts', '/users/test-id'];
+  const httpMethods = ['get', 'post', 'put', 'options'];
+
+  afterAll(() => {
+    closeDb();
+  });
+
+  it('should include Access-Control-Allow-Origin header for any HTTP method and valid route', () => {
+    fc.assert(
+      fc.asyncProperty(
+        fc.constantFrom(...httpMethods),
+        fc.constantFrom(...validRoutes),
+        async (method, route) => {
+          const res = await request(app)[method](route)
+            .set('Origin', 'http://localhost:5173')
+            .send({});
+
+          expect(res.headers).toHaveProperty('access-control-allow-origin');
+        }
+      ),
+      { numRuns: 100 }
+    );
+  });
+});

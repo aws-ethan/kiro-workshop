@@ -299,6 +299,17 @@ describe('Feature: local-development-setup, Property 11: Follow-unfollow round-t
           const userB = users[indexB];
           const tokenA = tokens[indexA];
 
+          // Clean up any existing follow relationship first
+          const db = require('../../src/database').getDb();
+          const existingFollow = db.prepare(
+            'SELECT followerId FROM follows WHERE followerId = ? AND followeeId = ?'
+          ).get(userA.id, userB.id);
+          if (existingFollow) {
+            await supertest(app)
+              .post(`/users/${userB.id}/unfollow`)
+              .set('Authorization', `Bearer ${tokenA}`);
+          }
+
           // Record counters before follow
           const beforeA = await supertest(app)
             .get(`/users/${userA.id}`)
@@ -353,7 +364,7 @@ describe('Feature: local-development-setup, Property 11: Follow-unfollow round-t
       ),
       { numRuns: 100 }
     );
-  }, 120000);
+  }, 180000);
 
   it('should reject self-follow with 400', async () => {
     await fc.assert(

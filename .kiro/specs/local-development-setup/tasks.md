@@ -128,11 +128,11 @@
     - checkFollowing 返回 true 当且仅当 follows 表中存在对应记录
     - **验证需求：4.8**
 
-- [-] 8. 检查点 - 确保所有业务路由正常
+- [x] 8. 检查点 - 确保所有业务路由正常
   - 确保所有测试通过，如有问题请向用户确认。
 
-- [ ] 9. 创建 Express 服务器入口并组装路由
-  - [~] 9.1 创建 `backend/src/server.js`
+- [x] 9. 创建 Express 服务器入口并组装路由
+  - [x] 9.1 创建 `backend/src/server.js`
     - 加载 dotenv 配置
     - 初始化 Express 应用，注册 cors、express.json 中间件
     - 调用 initDatabase() 初始化数据库
@@ -142,29 +142,29 @@
     - 启动失败时输出错误并 process.exit(1)
     - _需求：1.1, 1.2, 1.3, 1.4, 1.5, 6.3, 6.5_
 
-  - [~] 9.2 编写属性测试：CORS 头存在性
+  - [x] 9.2 编写属性测试：CORS 头存在性
     - **属性 1：CORS 头存在性**
     - 对任意 HTTP 方法和有效路由，响应应包含 Access-Control-Allow-Origin 头
     - **验证需求：1.3**
 
-- [ ] 10. 前端环境变量适配
-  - [~] 10.1 创建 `frontend/.env.local` 示例文件
+- [x] 10. 前端环境变量适配
+  - [x] 10.1 创建 `frontend/.env.local` 示例文件
     - 设置 VITE_API_URL=http://localhost:3001
     - 移除 Cognito 相关变量（VITE_USER_POOL_ID 等）
     - _需求：5.1, 5.3_
 
-  - [~] 10.2 更新 `frontend/.env.example`（如存在）
+  - [x] 10.2 更新 `frontend/.env.example`（如存在）
     - 添加本地开发配置说明
     - _需求：5.3_
 
-- [ ] 11. 实现数据库重置脚本
-  - [~] 11.1 创建 `backend/scripts/reset-db.js`
+- [x] 11. 实现数据库重置脚本
+  - [x] 11.1 创建 `backend/scripts/reset-db.js`
     - 删除 data/local.db 文件（如存在）
     - 调用 initDatabase() 重新创建表结构
     - 输出重置完成信息
     - _需求：7.2_
 
-- [~] 12. 最终检查点 - 确保所有测试通过
+- [x] 12. 最终检查点 - 确保所有测试通过
   - 确保所有测试通过，如有问题请向用户确认。
 
 ## 备注
