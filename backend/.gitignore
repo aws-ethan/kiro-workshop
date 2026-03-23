@@ -9,6 +9,3 @@ npm-debug.log*
 # Editor directories and files
 .DS_Store
 *.sw?
-
-# Environment variables
-.env
